@@ -2,3 +2,4 @@ node_modules
 cdk.out
 spaces.http
 cdk.context.json
+.vscode
