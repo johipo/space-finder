@@ -1,0 +1,16 @@
+#  Running the Test Script  
+
+To execute the test file, run the following command in your terminal:  
+```sh
+ts-node test/launcher.ts
+```
+### Requirements:
+- **Node.js** installed (`node -v` to check).
+- **TypeScript and ts-node** installed globally or within the project:
+  ```sh
+  npm install -g ts-node typescript
+  ```
+  Or, if using a local installation:
+  ```sh
+  npm install --save-dev ts-node typescript
+  ```
