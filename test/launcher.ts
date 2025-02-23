@@ -1,24 +1,24 @@
 import { handler } from "../src/services/spaces/handler";
+import * as dotenv from "dotenv";
 
-    process.env.AWS_REGION = "eu-west-1",
-    process.env.TABLE_NAME = "SpacesTable-0277555f1943"
+dotenv.config();
 
-    // handler({
-    //     httpMethod: 'POST',
-    //     body: JSON.stringify({
-    //         location: 'London'
-    //     })
-    // } as any, {} as any);
+const method = process.argv[2]?.toUpperCase();
+const location = method === "POST" ? process.argv[3] : '';
+const id = method === "GET_BY_ID" ? process.argv[3] : '';
 
+const events: Record<string, any> = {
+    "GET": { httpMethod: "GET" },
+    "GET_BY_ID": {
+        httpMethod: "GET",
+        queryStringParameters: { id },
+    },
+    "POST": {
+        httpMethod: "POST",
+        body: JSON.stringify({ location }),
+    },
+};
 
-    // handler({
-    //     httpMethod: 'GET'
-    // } as any, {} as any);
+const event = events[method.toUpperCase()] || events["GET"];
 
-
-    handler({
-        httpMethod: 'GET',
-       queryStringParameters: {
-        id: '527495f1-15bb-4025-9ce9-516d2cfc45db'
-       }
-    } as any, {} as any);
+handler(event as any, {} as any);

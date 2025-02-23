@@ -3,3 +3,4 @@ cdk.out
 spaces.http
 cdk.context.json
 .vscode
+.env
