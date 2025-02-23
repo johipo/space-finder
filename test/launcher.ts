@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const method = process.argv[2]?.toUpperCase();
-const id = ["GET_BY_ID", "PUT"].includes(method) ? process.argv[3] : "";
+const id = ["GET_BY_ID", "PUT", "DELETE"].includes(method) ? process.argv[3] : "";
 const location = ["POST", "PUT"].includes(method) ? process.argv[method === "PUT" ? 4 : 3] : "";
 
 const events: Record<string, any> = {
@@ -21,6 +21,10 @@ const events: Record<string, any> = {
         httpMethod: "PUT",
         queryStringParameters: { id },
         body: JSON.stringify({ location }),
+    },
+    "DELETE": {
+        httpMethod: "DELETE",
+        queryStringParameters: { id },
     },
 };
 
